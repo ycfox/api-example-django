@@ -2,10 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+	<meta http-equiv="refresh" content="60000000" >
     <title>Welcome to drchrono</title>
 </head>
 <body>
+    <script type="text/javascript"> 
+        var myDate = new Date(); 
+        var myDay = myDate.getDay(); 
+        
+        // Array of days. 
+        var weekday = ['Sunday', 'Monday', 'Tuesday', 
+            'Wednesday', 'Thursday', 'Friday', 'Saturday' 
+        ]; 
+        document.write("Today is : " + weekday[myDay]); 
+        document.write("<br/>"); 
+        
+        // get hour value. 
+        var hours = myDate.getHours(); 
+        var ampm = hours >= 12 ? 'PM' : 'AM'; 
+        hours = hours % 12; 
+        hours = hours ? hours : 12; 
+        var minutes = myDate.getMinutes(); 
+        minutes = minutes < 10 ? '0' + minutes : minutes; 
+        var myTime = hours + " " + ampm + " : " + minutes +  
+            " : " + myDate.getMilliseconds(); 
+        document.write("\tCurrent time is : " + myTime); 
+    </script>
 <h1>Welcome {{ doctor.first_name }} {{ doctor.last_name }}</h1>
 {{ doctor }}
+<ul>
+{% for app, pat, wait in app_details %}
+    <li>{{ app.id }} {{ pat.first_name }} {{ pat.last_name }} {{ app.duration }} {{ app.exam_room }} {{ app.scheduled_time }} {{ app.status }} {{ wait }} </li>
+{% endfor %}
+</ul>
 </body>
 </html>
